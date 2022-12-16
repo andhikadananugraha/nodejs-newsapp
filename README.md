@@ -1,24 +1,26 @@
-News website
+NodeJS Newsapp
 ============
 
-Simple news website in Node.js. Streams loading, parsing and rendering of a number of RSS feeds into a single page app.
+Simple news website in Node.js.
 
-##[Demo](https://node-news-website.herokuapp.com)
+![2022-12-16_09-58](https://user-images.githubusercontent.com/34089274/208011931-c3ba2fbd-c749-47f1-ac2d-6680f76047aa.png)
 
-Setup with:
+---
 
-    npm install
+### *Instalation*
 
-Configure RSS environment variables using a `.env` file in your project root e.g:
+1\. Npm install
+```bash
+npm install
+```
 
-    FEEDS="http://feeds.bbci.co.uk/news/rss.xml,http://feeds.skynews.com/feeds/rss/home.xml"
-    FEED_LIMIT=10
+2\. Create `.env` file with the following contents
+```bash
+FEEDS="http://feeds.bbci.co.uk/news/rss.xml,http://feeds.skynews.com/feeds/rss/home.xml"
+FEED_LIMIT=10
+```
 
-Run with:
-
-    node app.js
-
-Test with:
-
-    npm install mocha -g
-    mocha
+3\. Run with:
+```bash
+node app.js
+```
