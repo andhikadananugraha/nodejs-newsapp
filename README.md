@@ -1,16 +1,24 @@
-# News App using NodeJS
+News website
+============
 
-Node.js project using express, ejs where we fetch the news data from news api.
+Simple news website in Node.js. Streams loading, parsing and rendering of a number of RSS feeds into a single page app.
 
-<img src="https://github.com/RahulNimkande/News-website/blob/main/Screenshot%20(192).png?raw=true" alt="GitHub Logo" style="max-width: 100%;">
+##[Demo](https://node-news-website.herokuapp.com)
 
----
+Setup with:
 
-### Installation
-<p>To run this project, install it locally using npm:</p>
-<div class="snippet-clipboard-content position-relative overflow-auto" data-snippet-clipboard-copy-content="$ npm install
-$ npm start
-"><pre><code>$ npm install
-$ node app.js
-</code></pre></div>
+    npm install
 
+Configure RSS environment variables using a `.env` file in your project root e.g:
+
+    FEEDS="http://feeds.bbci.co.uk/news/rss.xml,http://feeds.skynews.com/feeds/rss/home.xml"
+    FEED_LIMIT=10
+
+Run with:
+
+    node app.js
+
+Test with:
+
+    npm install mocha -g
+    mocha

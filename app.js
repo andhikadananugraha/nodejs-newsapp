@@ -1,17 +1,25 @@
-const express = require('express')
-const app=express()
-const port = process.env.PORT||3000;
-//const bodyParser = require('body-parser');
-const moment = require('moment')
-app.locals.moment = moment;
+var express = require('express');
+var bodyParser = require('body-parser');
+var rssParser = require('./lib/rss-parser');
+var templateStream = require('./lib/template-stream')(__dirname + '/views', 'layout_.handlebars');
 
-// template engine  
-app.use(express.static('public'))
-app.set('view engine','ejs')
+require('dotenv').load();
 
-app.use(express.urlencoded({ extended: true }));
-app.use('/',require('./routes/news'))
+var app = module.exports = express();
 
-app.set('views','./views')
+var feeds = process.env.FEEDS ? process.env.FEEDS.split(',') : [];
 
-app.listen(port,()=> console.log("started"))
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.get('/', function (req, res) {
+  res.locals.title = 'The newest news';
+  var articles = rssParser(feeds, process.env.FEED_LIMIT || 10);
+  res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+  templateStream('article.handlebars', res.locals, articles).pipe(res);
+});
+
+app.use(express.static('public'));
+
+if (require.main === module) {
+  app.listen(process.env.PORT || 3000);
+}
